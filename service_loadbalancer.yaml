@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: counter-svc-pky
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-subnets: "subnet-0b4516c881df5e118, subnet-04efeb3d11c7cab8a"
+spec:
+  ports:
+    - port: 80
+      targetPort: 3000
+      protocol: TCP
+  type: LoadBalancer
+  selector:
+    app: counter-pky

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: counter-pky
+  labels:
+    app: counter-pky
+spec:
+  containers:
+    - name: app-pky
+      image: ghcr.io/subicura/counter:latest
+      env:
+        - name: REDIS_HOST
+          value: "localhost"
+    - name: db-pky
+      image: redis

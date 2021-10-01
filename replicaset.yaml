@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: counter-rs-pky
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: counter-pky
+  template:
+    metadata:
+      labels:
+        app: counter-pky
+    spec:
+      containers:
+        - name: app-pky
+          image: ghcr.io/subicura/counter:latest
+          env:
+            - name: REDIS_HOST
+              value: "localhost"
+        - name: db-pky
+          image: redis
