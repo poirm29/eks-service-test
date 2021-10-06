@@ -1,5 +1,3 @@
-# eks-service-test
-UWS AWS TF팀 내부 EKS 구성 테스트를 위한 자료입니다.
 ## AWS EKS Test
 
 #### AKS 생성 및 접속
@@ -23,6 +21,10 @@ UWS AWS TF팀 내부 EKS 구성 테스트를 위한 자료입니다.
   ```
   kubectl get pods --all-namespaces
   ```
+
+  
+
+  #### Pod 생성 및 서비스 테스트 
 
 * pod 생성해보기
 
@@ -87,7 +89,13 @@ UWS AWS TF팀 내부 EKS 구성 테스트를 위한 자료입니다.
 
 
 
+#### Deployments 생성 및 테스트
 
+- deployment 생성
+
+  ```
+  kubectl apply -f deployments.yaml
+  ```
 
 
 - deployment 버전 히스토리 확인
@@ -108,15 +116,20 @@ UWS AWS TF팀 내부 EKS 구성 테스트를 위한 자료입니다.
   kubectl rollout undo deploy/counter-deploy-pky --to-revision=1
   ```
 
-  
-
-pod가 각 노드로 분산되지않음.
-
-lb의 az c 영역이 추가되지않음.
-
-하나이상의 Pod가 올라가지않음
 
 
+#### Service (LB) 생성
 
-노드를 큰걸로 바꿔서 다시 올려볼 것.
+- loadbalancer 생성
 
+  ```
+  kubectl apply -f service_loadbalancer.yaml
+  ```
+
+- service 정보 확인
+
+  ```
+  kubectl get svc -o wide
+  ```
+
+- 브라우저를 통해 서비스 테스트
